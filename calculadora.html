@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+
+    <div id="head">
+        <img src="logo.png" alt="" id="logo" class="flutuacao">
+    </div>
+    
+    <div id="calc">
+        <div id="insert">
+            <h2>Conversor</h2>
+
+            <h3>Digite um número</h3>
+            <input type="text" id="numero">
+            <br>
+
+            <h3>Escolha a base do número digitado:</h3>
+            <select name="" id="combo_base">
+                <option value="#">Escolha a base do número</option>
+                <option value="decimal">Decimal</option>
+                <option value="binario">Binário</option>
+                <option value="octal">Octal</option>
+                <option value="hexadecimal">Hexadecimal</option>
+            </select>
+            <br>
+
+            <button id="botao" onclick="converter()">Calcular</button>
+        </div>
+
+        <div id="apresentacao">
+            <h2>Resultados: </h2>
+            <br>
+
+            <div id="div_resultado"></div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function converter(){
+        let final;
+        let n = numero.value;
+        let base = combo_base.value;
+
+        div_resultado.innerHTML = "";
+
+        if(base == 'decimal'){
+            final = parseInt(n, 10);
+        }else if(base == 'binario'){
+            final = parseInt(n, 2);
+        }else if(base == 'octal'){
+            final = parseInt(n, 8);
+        }else if(base == 'hexadecimal'){
+            final = parseInt(n, 16);
+        }else{
+            alert("Escolha a base do número digitado");
+        }
+
+        div_resultado.innerHTML = `Decimal: ${final}<br><br><br>
+                                   Binário: ${final.toString(2)}<br><br><br>
+                                   Octal: ${final.toString(8)}<br><br><br>
+                                   Hexadecimal: ${final.toString(16).toUpperCase()}<br><br><br>`;
+
+    }
+</script>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        justify-items: center;
+        background-image: url(xadrez2.png);
+        color: #e6b33d;
+    }
+
+    #insert, #apresentacao{
+        background-color: #274862db;
+        display: grid;
+        justify-items: center;
+        border-radius: 30px;
+        width: 400px;
+        height: 400px;
+        border: 3px solid #172c3c;
+    }
+
+    #calc{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 80px;
+        margin: 40px auto;
+    }
+    
+    #logo{
+        width: 350px;
+    }
+
+    /* Animacao da logo */
+    @keyframes flutuar{
+        0%,
+        100%{
+            transform: translateY(-2px) rotate(-2deg);
+        }
+
+        50%{
+            transform: translateY(2px) rotate(10deg);
+        }
+    }
+
+    .flutuacao{
+        animation: flutuar 5s ease-in-out infinite;
+    } /*classe */
+    
+    #numero, #combo_base{
+        background-color: #274862;
+        border: 3px solid #172c3c;
+        border-radius: 10px;
+        height: 25px;
+        color: #ffffff;
+    }
+
+    #botao{
+        height: 30px;
+        width: 90px;
+        border-radius: 5px;
+        color: white;
+        background-color: #203c52;
+        border: 2px solid #1d374b;
+    }
+
+    #botao:hover{
+        transform: translateY(-5px);
+        transition: 0.5s;
+    }
+
+    #div_resultado{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+</style>
